@@ -31,3 +31,11 @@ const rightArrow = document.querySelector('.arrow_right');
 const leftArrow = document.querySelector('.arrow_left');
 
 ////////////////////////////////////////////////
+
+rightArrow.addEventListener("click", () => {
+	//console.log("click droit");
+})
+
+leftArrow.addEventListener("click", () => {
+	//console.log("click gauche");
+})
