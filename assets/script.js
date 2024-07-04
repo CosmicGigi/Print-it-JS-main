@@ -17,9 +17,17 @@ const slides = [
 	}
 ]
 
-/* ligne directive:
 
-ajouts des differents let et const (dots et arrow left&right)
-ajouter code pour remplir et déplacer les dots
-rendre les fleches clickables
-*/
+// Variables
+
+//constante pour mes images de la bannière
+const image = document.querySelector('.banner-img');
+//constante pour mes textes accompagnants les images de la bannière
+const tagLine = document.querySelector('#banner p');
+//constantes pour les bullets pointers//
+const dotsPart = document.querySelector('.dots');
+//constantes pour mes flèches gauches et droites//
+const rightArrow = document.querySelector('.arrow_right');
+const leftArrow = document.querySelector('.arrow_left');
+
+////////////////////////////////////////////////
