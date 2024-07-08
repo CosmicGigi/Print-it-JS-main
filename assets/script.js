@@ -1,23 +1,24 @@
+//tableau contenant chaques objets (image + tagline)
 const slides = [
 	{
-		"image":"slide1.jpg",
+		"image":"./assets/images/slideshow/slide1.jpg",
 		"tagLine":"Impressions tous formats <span>en boutique et en ligne</span>"
 	},
 	{
-		"image":"slide2.jpg",
+		"image":"./assets/images/slideshow/slide2.jpg",
 		"tagLine":"Tirages haute définition grand format <span>pour vos bureaux et events</span>"
 	},
 	{
-		"image":"slide3.jpg",
+		"image":"./assets/images/slideshow/slide3.jpg",
 		"tagLine":"Grand choix de couleurs <span>de CMJN aux pantones</span>"
 	},
 	{
-		"image":"slide4.png",
+		"image":"./assets/images/slideshow/slide4.png",
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
 
-//currentSlide avec i fixé à zéro (1)
+//variable currentSlide avec i initialisée à zéro (1)
 let currentSlide = 0;
 
 //constante pour mes images dans la bannière
@@ -38,7 +39,8 @@ const leftArrow = document.querySelector('.arrow_left');
 // i (index) est utilisé pour créer les points de navigation et les associer aux diapositives.
 //création d'une div 'dot' (présente dans mon css)
 //class.list.add 'dot' pour ajouter cette classe à mon code
-// si i égale zéro, ajout de la classe 'dot_selected' et donc dot plein
+//i===0, ajout de la classe 'dot_selected' au premier point de nav et donc dot plein
+//'dotsContainer.appendChild(dot)' : Ajoute chaque point de navigation au conteneur de points.
 
 slides.forEach((_, i) => {
     const dot = document.createElement('div');
@@ -46,17 +48,31 @@ slides.forEach((_, i) => {
     if (i === 0) dot.classList.add('dot_selected');
     dot.addEventListener('click', () => {
         currentSlide = i;
+		updateBanner();
     });
     dotsContainer.appendChild(dot);
 });
+
+//imgBanner.src ... Met à jour l'attribut src de l'image de la bannière pour afficher l'image de la diapositive actuelle.
+//tagLine.innerHTML ... Met à jour le texte de la bannière pour afficher la tagline de la diapositive actuelle.
+//document.querySelectorAll('.dot').forEach ... Parcourt tous les points de navigation et met à jour leur état (dot_selected) en fonction de currentSlide
+const updateBanner = () => {
+	imgBanner.src = slides[currentSlide].image;
+    tagLine.innerHTML = slides[currentSlide].tagLine;
+    document.querySelectorAll('.dot').forEach((dot, i) => {
+        dot.classList.toggle('dot_selected', i === currentSlide);
+    });
+};
 
 // Ajoute des écouteurs d'événements aux flèches
 rightArrow.addEventListener('click', () => {
     currentSlide = (currentSlide + 1) % slides.length;
     console.log('click droit');
+	updateBanner();
 });
 
 leftArrow.addEventListener('click', () => {
     currentSlide = (currentSlide - 1 + slides.length) % slides.length;
     console.log('click gauche');
+	updateBanner();
 });
